@@ -11,17 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class PublisherFactory {
 
-    @Autowired
-    static AppContext context;
-
     public static Publishable getPublisher(PublisherType publisherType){
         Publishable publishable = null;
         switch (publisherType){
             case QUEUE:
-                publishable =  context.getBean(QueuePublisher.class);
+                publishable =  AppContext.getBean(QueuePublisher.class);
                 break;
             case TOPIC:
-                publishable = context.getBean(TopicPublisher.class);
+                publishable = AppContext.getBean(TopicPublisher.class);
                 break;
         }
         return publishable;
